@@ -3,7 +3,9 @@ A set of executable Gherkin scenarios written in Java to test the [Search Contac
 ## Requirements
 - [Java](https://jdk.java.net/) 17+
 - [Maven](https://maven.apache.org/download.cgi) 3.6.3+
-- Have a valid Aircall API account.
+- Have a valid Aircall API account. 
+
+Alternatively, in the case of using the [Docker execution](#docker-execution), you don't need to have Java or Maven installed.
 ### Test plan & tools selection
 The test plan has been defined in the format of a set of scenarios following the __Gherkin__ syntax (Given / When / Then). It can be found in the following file:
 `src/test/resources/com/github/test/back/senior/searchContact.feature`
@@ -26,6 +28,16 @@ export API_TOKEN=<API_TOKEN>
 Once this is done you can run the scenarios by simply running the following command:
 ```
 mvn test
+```
+### Docker execution
+#### Build Docker image
+```
+sudo docker build --tag="test-back-senior:latest" .
+```
+#### Run Docker image
+In the case of Docker execution, you need to pass the environment variables within the run command:
+```
+sudo docker run --env API_ID=<API_ID> --env API_TOKEN=<API_TOKEN> -it test-back-senior:latest
 ```
 ### Reports
 The report showing the result of the scenarios execution can be seen in the standard output:
