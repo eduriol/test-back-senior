@@ -5,5 +5,5 @@ Feature: Search contact
 
   Scenario: Search contact by phone number
     Given I have an account with access to the Contacts API
-    #When I search for the contact with phone number "+33652556756"
-    #Then I get proper contact info
+    When I search for the contact with phone number "+33652556756"
+    Then I get a successful response

@@ -1,5 +1,5 @@
 # Test Back Senior by Eduardo Riol
-A set of executable Gherkin scenarios written in Java to test the Search Contacts API.
+A set of executable Gherkin scenarios written in Java to test the [Search Contacts API](https://developer.aircall.io/api-references/#search-contacts).
 ## Requirements
 - [Java](https://jdk.java.net/) 17+
 - [Maven](https://maven.apache.org/download.cgi) 3.6.3+
@@ -25,12 +25,12 @@ export API_TOKEN=<API_TOKEN>
 ```
 Once this is done you can run the scenarios by simply running the following command:
 ```
-maven test
+mvn test
 ```
 ### Reports
 Pending...
 ## Manually test API
-To perform a basic manual GET petition to Contact API, you can execute the following cURL command:
+To perform a basic manual GET petition to _Contact API_, you can execute the following cURL command:
 ```
 curl --request GET '{{host}}/v1/contacts/search?order=asc&order_by=created_at&phone_number={{phone_number}}' \
 --header 'Authorization: Basic {{token}}'
