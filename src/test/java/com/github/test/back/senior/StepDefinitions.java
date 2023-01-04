@@ -8,8 +8,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -20,30 +19,25 @@ public class StepDefinitions {
 
     @Given("I have an account with access to the Contacts API")
     public void iHaveAnAccountWithAccessToTheContactsAPI() throws IOException {
-        Properties prop = new Properties();
-        InputStream input = getClass().getResourceAsStream("/test.properties");
-        prop.load(input);
-        String baseUri = prop.getProperty("base_uri");
-        String basePath = prop.getProperty("base_path");
-        String authToken = System.getenv("AUTH_TOKEN");
+        Configurator configurator = new Configurator();
+        Map<String, String> configuration = configurator.getTestConfiguration();
         requestSpec = given()
-                .baseUri(baseUri)
-                .basePath(basePath)
-                .header("Authorization", "Basic " + authToken);
+                .baseUri(configuration.get("base_uri"))
+                .basePath(configuration.get("base_path"))
+                .header("Authorization", "Basic " + configuration.get("auth_token"));
     }
 
     @When("I search for the contact with phone number {string}")
     public void iSearchForTheContactWithPhoneNumber(String phoneNumber) {
-        response = requestSpec
-                .when()
+        response = requestSpec.when()
                 .queryParam("phone_number", phoneNumber)
                 .get();
     }
 
     @Then("I get a successful response")
     public void iGetASuccessfulResponse() {
-        response
-                .then()
+        response.then()
                 .statusCode(200);
     }
+
 }
