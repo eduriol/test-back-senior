@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class Configurator {
+public class TestConfigurator {
 
     public Map<String, String> getTestConfiguration() throws IOException {
         Properties properties = new Properties();

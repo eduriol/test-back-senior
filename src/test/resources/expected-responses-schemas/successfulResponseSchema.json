@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "contacts",
+    "meta"
+  ],
+  "properties": {
+    "contacts": {
+      "type": "array",
+      "default": [],
+      "title": "The contacts Schema",
+      "items": {
+        "type": "object",
+        "default": {},
+        "title": "A Schema",
+        "required": [
+          "id",
+          "direct_link",
+          "first_name",
+          "last_name",
+          "company_name",
+          "information",
+          "is_shared",
+          "created_at",
+          "updated_at",
+          "emails",
+          "phone_numbers"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema"
+          },
+          "direct_link": {
+            "type": "string",
+            "default": "",
+            "title": "The direct_link Schema"
+          },
+          "first_name": {
+            "type": "string",
+            "default": "",
+            "title": "The first_name Schema"
+          },
+          "last_name": {
+            "type": ["string", "null"],
+            "default": "",
+            "title": "The last_name Schema"
+          },
+          "company_name": {
+            "type": ["string", "null"],
+            "default": null,
+            "title": "The company_name Schema"
+          },
+          "information": {
+            "type": ["string", "null"],
+            "default": "",
+            "title": "The information Schema"
+          },
+          "is_shared": {
+            "type": "boolean",
+            "default": false,
+            "title": "The is_shared Schema"
+          },
+          "created_at": {
+            "type": "integer",
+            "default": 0,
+            "title": "The created_at Schema"
+          },
+          "updated_at": {
+            "type": "integer",
+            "default": 0,
+            "title": "The updated_at Schema"
+          },
+          "emails": {
+            "type": "array",
+            "default": [],
+            "title": "The emails Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "id",
+                "label",
+                "value"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The id Schema"
+                },
+                "label": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The label Schema"
+                },
+                "value": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The value Schema"
+                }
+              }
+            }
+          },
+          "phone_numbers": {
+            "type": "array",
+            "default": [],
+            "title": "The phone_numbers Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "id",
+                "label",
+                "value"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The id Schema"
+                },
+                "label": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The label Schema"
+                },
+                "value": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The value Schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "default": {},
+      "title": "The meta Schema",
+      "required": [
+        "count",
+        "total",
+        "current_page",
+        "per_page",
+        "next_page_link",
+        "previous_page_link"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "default": 0,
+          "title": "The count Schema"
+        },
+        "total": {
+          "type": "integer",
+          "default": 0,
+          "title": "The total Schema"
+        },
+        "current_page": {
+          "type": "integer",
+          "default": 0,
+          "title": "The current_page Schema"
+        },
+        "per_page": {
+          "type": "integer",
+          "default": 0,
+          "title": "The per_page Schema"
+        },
+        "next_page_link": {
+          "type": ["string", "null"],
+          "default": null,
+          "title": "The next_page_link Schema"
+        },
+        "previous_page_link": {
+          "type": ["string", "null"],
+          "default": null,
+          "title": "The previous_page_link Schema"
+        }
+      }
+    }
+  }
+}
