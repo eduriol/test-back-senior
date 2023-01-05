@@ -3,12 +3,12 @@ package com.github.test.back.senior;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -37,13 +37,6 @@ public class StepDefinitions {
                 .get();
     }
 
-    @Then("I get a successful response")
-    public void iGetASuccessfulResponse() {
-        response.then()
-                .assertThat()
-                .statusCode(200);
-    }
-
     @Then("the response has a correct format")
     public void theResponseHasACorrectFormat() {
         response.then()
@@ -68,10 +61,26 @@ public class StepDefinitions {
                 .header("Authorization", "Basic a_bad_token");
     }
 
-    @Then("I get an Unauthorized response")
-    public void iGetAnUnauthorizedResponse() {
+    @Then("I can proceed to next page")
+    public void iCanProceedToNextPage() {
+        String nextPageLink = response.path("meta.next_page_link");
+        requestSpec.get(nextPageLink)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .and()
+                .assertThat()
+                .body("meta.current_page", equalTo(2));
+    }
+
+    @Then("I get a(n) {string} response")
+    public void iGetAResponse(String responseType) {
+        Map<String, Integer> statuses = new HashMap<>();
+        statuses.put("Successful", 200);
+        statuses.put("Bad request", 400);
+        statuses.put("Unauthorized", 401);
         response.then()
                 .assertThat()
-                .statusCode(401);
+                .statusCode(statuses.get(responseType));
     }
 }
